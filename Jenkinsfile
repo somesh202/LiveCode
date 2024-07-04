@@ -24,11 +24,17 @@ pipeline {
             }
         }
 
-        // stage('Run Tests') {
-        //     steps {
-        //         sh 'npm test'
-        //     }
-        // }
+        stage('Run Tests and Code Coverage') {
+            steps {
+                sh 'npm test -- --coverage'
+                publishHTML(target: [
+                    reportDir: 'coverage/lcov-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage Report'
+                ])
+            }
+        }
+
 
         stage('SonarQube Analysis') {
             steps {
@@ -43,13 +49,38 @@ pipeline {
                 waitForQualityGate abortPipeline: true
             }
         }
+
+        stage('Security Scan') {
+            steps {
+                sh 'dependency-check --project Jenkins --scan ./ --format HTML --out dependency-check-report.html'
+                script {
+                    def report = readFile 'dependency-check-report.html'
+                    if (report.contains('CRITICAL')) {
+                        error('Critical vulnerabilities found')
+                    }
+                }
+            }
+        }
+    }
+    stage('Cyclomatic Complexity Analysis') {
+        steps {
+            sh 'lizard . > complexity-report.txt'
+            archiveArtifacts artifacts: 'complexity-report.txt', allowEmptyArchive: true
+            echo 'Cyclomatic Complexity analysis complete. Check the complexity-report.txt for details.'
+        }
     }
 
     post {
-        always {
-            mail to: 'your-email@example.com',
-                subject: "Jenkins Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Build result: ${currentBuild.result}"
+        success {
+            emailext subject: "Jenkins Build Success: ${currentBuild.fullDisplayName}",
+                    body: "Build successful! Check Jenkins for details.",
+                    to: 'someshranjan252008@gmail.com'
+        }
+        failure {
+            emailext subject: "Jenkins Build Failure: ${currentBuild.fullDisplayName}",
+                    body: "Build failed! Check Jenkins for details.",
+                    to: 'someshranjan252008@gmail.com'
         }
     }
+
 }

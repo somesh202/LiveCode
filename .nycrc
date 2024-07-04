@@ -1,0 +1,8 @@
+{
+  "extends": "@istanbuljs/nyc-config-jest",
+  "reporter": [
+    "html",
+    "text",
+    "lcov"
+  ]
+}
