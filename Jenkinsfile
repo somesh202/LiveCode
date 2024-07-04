@@ -9,7 +9,6 @@ pipeline {
     tools {
         nodejs 'NodeJS'
         git 'Default'
-        sonarqubeScanner 'SonarQube'
     }
 
     stages {
