@@ -26,7 +26,7 @@ pipeline {
 
         stage('Run Tests and Code Coverage') {
             steps {
-                sh 'npm test -- --coverage'
+                sh 'npm test'
                 publishHTML(target: [
                     reportDir: 'coverage/lcov-report',
                     reportFiles: 'index.html',
@@ -71,7 +71,7 @@ pipeline {
         }
 
     }
-    
+
     post {
         success {
             emailext subject: "Jenkins Build Success: ${currentBuild.fullDisplayName}",
