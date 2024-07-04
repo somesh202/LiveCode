@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import ACTIONS from '../Actions';
