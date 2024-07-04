@@ -70,6 +70,8 @@ pipeline {
             }
         }
 
+    }
+    
     post {
         success {
             emailext subject: "Jenkins Build Success: ${currentBuild.fullDisplayName}",
@@ -82,6 +84,4 @@ pipeline {
                     to: 'someshranjan252008@gmail.com'
         }
     }
-
-}
 }
