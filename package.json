@@ -28,7 +28,7 @@
     "start": "npm run build && npm run server:prod",
     "build": "react-scripts build",
     "server:dev": "nodemon server.js",
-    "server:prod": "node server.js", 
+    "server:prod": "node server.js",
     "test": "jest --coverage",
     "eject": "react-scripts eject"
   },
@@ -51,6 +51,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
     "nodemon": "^2.0.15"
   }
 }
