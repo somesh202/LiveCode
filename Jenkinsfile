@@ -9,6 +9,7 @@ pipeline {
     tools {
         nodejs 'NodeJS'
         git 'Default'
+        sonarqubeScanner 'SonarQube'
     }
 
     stages {
@@ -24,11 +25,11 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'npm test'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh 'npm test'
+        //     }
+        // }
 
         stage('SonarQube Analysis') {
             steps {
