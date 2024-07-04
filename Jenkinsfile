@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Setup NodeJS') {
             steps {
-                tool name: 'NodeJS 22', type: 'NodeJSInstallation'
+                tool name: 'NodeJS', type: 'NodeJSInstallation'
                 sh 'node --version'
                 sh 'npm --version'
             }
