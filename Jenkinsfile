@@ -1,16 +1,19 @@
 pipeline {
     agent any
 
-    tools {
-        NodeJS 'NodeJS 14'
-    }
-
     environment {
         SONARQUBE_URL = 'http://54.166.191.92:9000'
         SONARQUBE_LOGIN = credentials('sonarqube-token')
     }
 
     stages {
+        stage('Setup NodeJS') {
+            steps {
+                tool name: 'NodeJS 22', type: 'NodeJSInstallation'
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/somesh202/LiveCode.git'
