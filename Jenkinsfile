@@ -61,14 +61,14 @@ pipeline {
                 }
             }
         }
-    }
-    stage('Cyclomatic Complexity Analysis') {
-        steps {
-            sh 'lizard . > complexity-report.txt'
-            archiveArtifacts artifacts: 'complexity-report.txt', allowEmptyArchive: true
-            echo 'Cyclomatic Complexity analysis complete. Check the complexity-report.txt for details.'
+
+        stage('Cyclomatic Complexity Analysis') {
+            steps {
+                sh 'lizard . > complexity-report.txt'
+                archiveArtifacts artifacts: 'complexity-report.txt', allowEmptyArchive: true
+                echo 'Cyclomatic Complexity analysis complete. Check the complexity-report.txt for details.'
+            }
         }
-    }
 
     post {
         success {
