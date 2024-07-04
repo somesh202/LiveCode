@@ -8,12 +8,13 @@ pipeline {
 
     tools {
         nodejs 'NodeJS'
+        git 'Default'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/somesh202/LiveCode.git'
+                git branch: 'master', url: 'https://github.com/somesh202/LiveCode.git'
             }
         }
 
