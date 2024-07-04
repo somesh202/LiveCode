@@ -6,14 +6,11 @@ pipeline {
         SONARQUBE_LOGIN = credentials('sonarqube-token')
     }
 
+    tools {
+        nodejs 'NodeJS'
+    }
+
     stages {
-        stage('Setup NodeJS') {
-            steps {
-                tool name: 'NodeJS', type: 'NodeJSInstallation'
-                sh 'node --version'
-                sh 'npm --version'
-            }
-        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/somesh202/LiveCode.git'
