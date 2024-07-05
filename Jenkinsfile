@@ -44,12 +44,10 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh """
-                        ${SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=your_project_key \
                         -Dsonar.sources=. \
                         -Dsonar.language=js \
-                        -Dsonar.host.url=$SONARQUBE_URL \
-                        -Dsonar.login=$SONARQUBE_LOGIN
+                        -Dsonar.host.url=$SONARQUBE_URL
                     """
                 }
             }
