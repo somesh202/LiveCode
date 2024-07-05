@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -7,9 +8,8 @@ import EditorPage from './pages/EditorPage';
 function App() {
     return (
         <>
-            <div>
+            <div data-testid="toaster">
                 <Toaster
-                    data-testid="toaster"
                     position="top-right"
                     toastOptions={{
                         success: {
