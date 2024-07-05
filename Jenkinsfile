@@ -47,8 +47,8 @@ pipeline {
                         ${SCANNER_HOME}/bin/sonar-scanner \
                         -X \
                         -Dsonar.projectKey=jenkins \
-                        -D sonar.host.url=$SONARQUBE_URL \
-                        -D sonar.login=$SONARQUBE_LOGIN
+                        -Dsonar.host.url=$SONARQUBE_URL \
+                        -Dsonar.login=$SONARQUBE_LOGIN
                     """
                 }
             }
