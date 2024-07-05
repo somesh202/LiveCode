@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE_URL = 'http://54.166.191.92:9000'
+        SONARQUBE_URL = 'http://35.174.156.89:9000'
         SONARQUBE_LOGIN = credentials('sonarqube-token')
     }
 
