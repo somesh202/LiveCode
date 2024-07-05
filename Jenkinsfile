@@ -9,6 +9,7 @@ pipeline {
     tools {
         nodejs 'NodeJS'
         git 'Default'
+        jdk 'OracleJDK8'
     }
 
     stages {
