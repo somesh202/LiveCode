@@ -37,9 +37,14 @@ pipeline {
 
 
         stage('SonarQube Analysis') {
+            environment {
+                SCANNER_HOME = tool 'SonarQube'
+            }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'sonar-scanner -Dsonar.projectKey=jenkins -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_LOGIN}'
+                    sh" ${SCANNER_HOME**}/bin/sonar-scanner \
+                        -Dsonar.projectKey=jenkins \
+                        -Dsonar.sources=. "                
                 }
             }
         }
