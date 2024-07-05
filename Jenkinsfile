@@ -44,7 +44,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh """
-                        -Dsonar.projectKey=your_project_key \
+                        -Dsonar.projectKey=jenkins \
                         -Dsonar.sources=. \
                         -Dsonar.language=js \
                         -Dsonar.host.url=$SONARQUBE_URL
