@@ -45,7 +45,6 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     sh """
                         ${SCANNER_HOME}/bin/sonar-scanner \
-                        -X \
                         -Dsonar.projectKey=your_project_key \
                         -Dsonar.sources=. \
                         -Dsonar.language=js \
