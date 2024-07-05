@@ -9,6 +9,7 @@ function App() {
         <>
             <div>
                 <Toaster
+                    data-testid="toaster"
                     position="top-right"
                     toastOptions={{
                         success: {
