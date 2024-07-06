@@ -59,7 +59,12 @@ pipeline {
 
         stage('Quality Gate') {
             steps {
-                waitForQualityGate abortPipeline: true
+               script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+                }
             }
         }
 
@@ -86,6 +91,10 @@ pipeline {
     }
 
     post {
+        always {
+            junit '**/test-results.xml'
+            cleanWs()
+        }
         success {
             emailext subject: "Jenkins Build Success: ${currentBuild.fullDisplayName}",
                     body: "Build successful! Check Jenkins for details.",
