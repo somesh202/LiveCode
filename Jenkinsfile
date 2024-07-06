@@ -4,6 +4,7 @@ pipeline {
     environment {
         SONARQUBE_URL = 'http://35.174.156.89:9000'
         SONARQUBE_LOGIN = credentials('sonarqube-token')
+        SCANNER_HOME = '/opt/sonar-scanner'
     }
 
     tools {
@@ -44,10 +45,10 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh """
-                        sonar-scanner \
+                        ${SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=jenkins \
-                        -Dsonar.sources=. \
-                        -Dsonar.tests=. \
+                        -Dsonar.sources=src \
+                        -Dsonar.tests=src \
                         -Dsonar.test.inclusions="**/*.test.js,**/*.spec.js" \
                         -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
                         -Dsonar.host.url=${SONARQUBE_URL} \
